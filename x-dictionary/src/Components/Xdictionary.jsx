@@ -30,7 +30,7 @@ const Xdictionary = () => {
           type="text"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          placeholder="Enter a word"
+          placeholder="Search for a word..."
           aria-label="Search input"
         />
         <button onClick={handleSearch}>Search</button>
