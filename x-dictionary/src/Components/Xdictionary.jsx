@@ -11,35 +11,33 @@ const Xdictionary = () => {
   const [result, setResult] = useState("");
 
   const handleSearch = () => {
-    let ans = null;
-    data.forEach((item) => {
-      if (item.word.toLowerCase() === search.toLowerCase()) {
-        ans = item.meaning;
-      }
-    });
-
-    if (ans) {
-      setResult(ans);
-    } else {
+    if (!search.trim()) {
       setResult("Word not found in the dictionary.");
+      return;
     }
+
+    const foundWord = data.find((item) => item.word.toLowerCase() === search.toLowerCase());
+    setResult(foundWord ? foundWord.meaning : "Word not found in the dictionary.");
   };
 
   return (
     <div>
       <h1>Dictionary App</h1>
       <div>
+        
         <input
+          id="search-input"
           type="text"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Enter a word"
+          aria-label="Search input"
         />
         <button onClick={handleSearch}>Search</button>
       </div>
       <div>
         <h3>Definition:</h3>
-        {result}
+        <p>{result}</p>
       </div>
     </div>
   );
